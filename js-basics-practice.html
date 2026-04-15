@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS基础知识练习</title>
+    <style>
+        body {
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #4CAF50;
+            margin-top: 30px;
+        }
+        .section {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .output {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: "Courier New", monospace;
+            font-size: 14px;
+            white-space: pre-wrap;
+            min-height: 40px;
+            margin-top: 10px;
+        }
+        .output .label { color: #569cd6; }
+        .output .value { color: #ce9178; }
+        .output .comment { color: #6a9955; }
+        .output .result { color: #dcdcaa; }
+        code {
+            background: #e8f5e9;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "Courier New", monospace;
+            color: #2e7d32;
+        }
+        p { line-height: 1.8; color: #555; }
+    </style>
+</head>
+<body>
+
+    <h1>📚 JavaScript 基础知识练习</h1>
+
+    <!-- ===== 1. 变量的定义 ===== -->
+    <div class="section">
+        <h2>一、变量的定义</h2>
+        <p>
+            JavaScript 中使用 <code>var</code>、<code>let</code>、<code>const</code> 三种方式声明变量。<br>
+            <code>var</code>：函数作用域，可重复声明；<code>let</code>：块级作用域，不可重复声明；<code>const</code>：块级作用域，声明常量（不可重新赋值）。
+        </p>
+        <div class="output" id="output-var"></div>
+    </div>
+
+    <!-- ===== 2. 变量类型 ===== -->
+    <div class="section">
+        <h2>二、变量类型</h2>
+        <p>
+            JavaScript 有 7 种基本数据类型：<code>Number</code>、<code>String</code>、<code>Boolean</code>、<code>Undefined</code>、<code>Null</code>、<code>Symbol</code>、<code>BigInt</code>，
+            以及引用类型 <code>Object</code>（包括 Array、Function 等）。<br>
+            使用 <code>typeof</code> 运算符可以检测变量类型。
+        </p>
+        <div class="output" id="output-type"></div>
+    </div>
+
+    <!-- ===== 3. 表达式 ===== -->
+    <div class="section">
+        <h2>三、表达式</h2>
+        <p>
+            表达式由操作数和运算符组成，包括：算术运算符、赋值运算符、比较运算符、逻辑运算符、三元运算符等。
+        </p>
+        <div class="output" id="output-expr"></div>
+    </div>
+
+    <!-- ===== 4. 流程控制 ===== -->
+    <div class="section">
+        <h2>四、流程控制</h2>
+        <p>
+            流程控制包括：<code>if/else</code> 条件判断、<code>switch/case</code> 分支、<code>for</code> 循环、<code>while</code> 循环、<code>break</code> 和 <code>continue</code>。
+        </p>
+        <div class="output" id="output-flow"></div>
+    </div>
+
+    <!-- ===== 5. 函数 ===== -->
+    <div class="section">
+        <h2>五、函数</h2>
+        <p>
+            函数是可复用的代码块，支持：函数声明、函数表达式、箭头函数、默认参数、递归调用等。
+        </p>
+        <div class="output" id="output-func"></div>
+    </div>
+
+
+    <script>
+        // ============================================================
+        // 工具函数：将内容输出到指定 div
+        // ============================================================
+        function printTo(id, text) {
+            var el = document.getElementById(id);
+            el.innerHTML += text + '\n';
+        }
+
+        // ============================================================
+        // 一、变量的定义
+        // ============================================================
+
+        // var 声明（函数作用域）
+        var studentName = "张三";
+        var score = 95;
+
+        // let 声明（块级作用域）
+        let className = "计算机科学与技术 2班";
+        let isPass = true;
+
+        // const 声明常量
+        const MAX_SCORE = 100;
+        const PI = 3.14159;
+
+        // 演示块级作用域
+        {
+            let blockVar = "我是块级变量，只在花括号内有效";
+            var funcVar = "我是 var 变量，在整个函数内有效";
+        }
+        // console.log(blockVar);  // 报错：blockVar is not defined
+        // console.log(funcVar);   // 正常：funcVar 仍可访问
+
+        printTo("output-var",
+            '<span class="comment">// var 声明</span>\n' +
+            '<span class="label">var</span> studentName = <span class="value">"' + studentName + '"</span>;\n' +
+            '<span class="label">var</span> score = <span class="value">' + score + '</span>;\n\n' +
+            '<span class="comment">// let 声明</span>\n' +
+            '<span class="label">let</span> className = <span class="value">"' + className + '"</span>;\n' +
+            '<span class="label">let</span> isPass = <span class="value">' + isPass + '</span>;\n\n' +
+            '<span class="comment">// const 声明常量</span>\n' +
+            '<span class="label">const</span> MAX_SCORE = <span class="value">' + MAX_SCORE + '</span>;\n' +
+            '<span class="label">const</span> PI = <span class="value">' + PI + '</span>;\n\n' +
+            '<span class="result">// 输出结果</span>\n' +
+            'studentName → ' + studentName + '\n' +
+            'score       → ' + score + '\n' +
+            'className   → ' + className + '\n' +
+            'MAX_SCORE   → ' + MAX_SCORE
+        );
+
+        // ============================================================
+        // 二、变量类型
+        // ============================================================
+
+        var numVal    = 42;
+        var floatVal  = 3.14;
+        var strVal    = "Hello, JavaScript!";
+        var boolVal   = false;
+        var undefVal;                    // undefined
+        var nullVal   = null;
+        var objVal    = { name: "李四", age: 20 };
+        var arrVal    = [1, 2, 3, 4, 5];
+        var bigIntVal = 9007199254740991n;
+
+        printTo("output-type",
+            '<span class="comment">// 基本数据类型</span>\n' +
+            'typeof ' + numVal    + '          → <span class="value">' + typeof numVal    + '</span>  (整数)\n' +
+            'typeof ' + floatVal  + '         → <span class="value">' + typeof floatVal  + '</span>  (浮点数)\n' +
+            'typeof "' + strVal  + '"  → <span class="value">' + typeof strVal    + '</span>  (字符串)\n' +
+            'typeof ' + boolVal   + '      → <span class="value">' + typeof boolVal   + '</span>  (布尔值)\n' +
+            'typeof undefined        → <span class="value">' + typeof undefVal  + '</span>  (未定义)\n' +
+            'typeof null             → <span class="value">' + typeof nullVal   + '</span>  (历史遗留bug)\n\n' +
+            '<span class="comment">// 引用类型</span>\n' +
+            'typeof { name:"李四" }  → <span class="value">' + typeof objVal    + '</span>  (对象)\n' +
+            'typeof [1,2,3,4,5]      → <span class="value">' + typeof arrVal    + '</span>  (数组本质是对象)\n' +
+            'Array.isArray([1,2,3])  → <span class="value">' + Array.isArray(arrVal) + '</span>  (用此方法判断数组)\n\n' +
+            '<span class="comment">// 对象内容</span>\n' +
+            'objVal.name → ' + objVal.name + ', objVal.age → ' + objVal.age + '\n' +
+            'arrVal      → [' + arrVal.join(", ") + ']'
+        );
+
+        // ============================================================
+        // 三、表达式
+        // ============================================================
+
+        // 算术运算
+        var a = 10, b = 3;
+        var add  = a + b;    // 13
+        var sub  = a - b;    // 7
+        var mul  = a * b;    // 30
+        var div  = a / b;    // 3.333...
+        var mod  = a % b;    // 1
+        var pow  = a ** b;   // 1000
+        var inc  = a++;      // 后置自增，先取值再加1
+
+        // 赋值运算
+        var x = 5;
+        x += 3;   // x = 8
+        x -= 2;   // x = 6
+        x *= 4;   // x = 24
+        x /= 6;   // x = 4
+
+        // 比较运算
+        var eq   = (10 == "10");   // true  （宽松相等）
+        var seq  = (10 === "10");  // false （严格相等）
+        var gt   = (10 > 3);       // true
+
+        // 逻辑运算
+        var and  = (true && false); // false
+        var or   = (true || false); // true
+        var not  = !true;           // false
+
+        // 三元运算符
+        var age  = 18;
+        var msg  = age >= 18 ? "成年人" : "未成年人";
+
+        // 字符串拼接
+        var greeting = "你好，" + studentName + "！你的分数是 " + score + " 分。";
+
+        printTo("output-expr",
+            '<span class="comment">// 算术运算（a=10, b=3）</span>\n' +
+            'a + b  = ' + add  + '\n' +
+            'a - b  = ' + sub  + '\n' +
+            'a * b  = ' + mul  + '\n' +
+            'a / b  = ' + (10/3).toFixed(4) + '\n' +
+            'a % b  = ' + mod  + '  (取余)\n' +
+            'a ** b = ' + pow  + '  (幂运算)\n\n' +
+            '<span class="comment">// 赋值运算（初始 x=5，经过 +=3 -=2 *=4 /=6）</span>\n' +
+            'x 最终 = ' + x + '\n\n' +
+            '<span class="comment">// 比较运算</span>\n' +
+            '10 == "10"  → ' + eq  + '  (宽松相等，会类型转换)\n' +
+            '10 === "10" → ' + seq + '  (严格相等，不转换类型)\n' +
+            '10 > 3      → ' + gt  + '\n\n' +
+            '<span class="comment">// 逻辑运算</span>\n' +
+            'true && false → ' + and + '\n' +
+            'true || false → ' + or  + '\n' +
+            '!true         → ' + not + '\n\n' +
+            '<span class="comment">// 三元运算符</span>\n' +
+            'age=' + age + ', age>=18 ? "成年人" : "未成年人"  →  ' + msg + '\n\n' +
+            '<span class="comment">// 字符串拼接</span>\n' +
+            greeting
+        );
+
+        // ============================================================
+        // 四、流程控制
+        // ============================================================
+
+        var flowOutput = "";
+
+        // if / else if / else
+        var grade = 85;
+        if (grade >= 90) {
+            flowOutput += "成绩 " + grade + " → 优秀 (if)\n";
+        } else if (grade >= 75) {
+            flowOutput += "成绩 " + grade + " → 良好 (else if)\n";
+        } else if (grade >= 60) {
+            flowOutput += "成绩 " + grade + " → 及格 (else if)\n";
+        } else {
+            flowOutput += "成绩 " + grade + " → 不及格 (else)\n";
+        }
+
+        // switch / case
+        var day = new Date().getDay(); // 0=周日, 1=周一 ...
+        var dayNames = ["周日","周一","周二","周三","周四","周五","周六"];
+        var dayType;
+        switch (day) {
+            case 0:
+            case 6:
+                dayType = "周末，好好休息！";
+                break;
+            default:
+                dayType = "工作日，加油学习！";
+        }
+        flowOutput += "今天是 " + dayNames[day] + "，" + dayType + " (switch)\n\n";
+
+        // for 循环
+        flowOutput += "for 循环（1~5 求和）：\n";
+        var sum = 0;
+        for (var i = 1; i <= 5; i++) {
+            sum += i;
+            flowOutput += "  i=" + i + ", 累计和=" + sum + "\n";
+        }
+        flowOutput += "结果：1+2+3+4+5 = " + sum + "\n\n";
+
+        // while 循环
+        flowOutput += "while 循环（找第一个 > 20 的 2 的幂）：\n";
+        var n = 1;
+        while (n <= 20) {
+            n *= 2;
+        }
+        flowOutput += "结果：n = " + n + "\n\n";
+
+        // for...of 遍历数组
+        flowOutput += "for...of 遍历数组 [10, 20, 30]：\n";
+        var nums = [10, 20, 30];
+        for (var num of nums) {
+            flowOutput += "  " + num + "\n";
+        }
+
+        // break / continue
+        flowOutput += "\nbreak/continue 示例（输出 1-10 中的奇数，遇到 9 停止）：\n";
+        for (var k = 1; k <= 10; k++) {
+            if (k === 9) break;          // 遇到 9 退出循环
+            if (k % 2 === 0) continue;   // 偶数跳过
+            flowOutput += "  " + k;
+        }
+        flowOutput += "\n";
+
+        printTo("output-flow",
+            '<span class="comment">// if/else if/else | switch | for | while | break/continue</span>\n' +
+            flowOutput
+        );
+
+        // ============================================================
+        // 五、函数
+        // ============================================================
+
+        // 1. 函数声明（hoisting：可在声明前调用）
+        function greet(name) {
+            return "你好，" + name + "！欢迎学习 JavaScript！";
+        }
+
+        // 2. 函数表达式
+        var square = function(n) {
+            return n * n;
+        };
+
+        // 3. 箭头函数（ES6）
+        var cube = (n) => n * n * n;
+
+        // 4. 默认参数（ES6）
+        function power(base, exp = 2) {
+            return Math.pow(base, exp);
+        }
+
+        // 5. 递归函数：计算阶乘
+        function factorial(n) {
+            if (n <= 1) return 1;
+            return n * factorial(n - 1);
+        }
+
+        // 6. 立即执行函数（IIFE）
+        var circleArea = (function(r) {
+            return (Math.PI * r * r).toFixed(2);
+        })(5);
+
+        // 7. 高阶函数（函数作为参数）
+        function applyTwice(fn, val) {
+            return fn(fn(val));
+        }
+        var addThree = (x) => x + 3;
+        var twiceResult = applyTwice(addThree, 10); // (10+3)+3 = 16
+
+        // 8. 闭包
+        function makeCounter() {
+            var count = 0;
+            return function() {
+                count++;
+                return count;
+            };
+        }
+        var counter = makeCounter();
+
+        printTo("output-func",
+            '<span class="comment">// 1. 函数声明</span>\n' +
+            'greet("王五") → ' + greet("王五") + '\n\n' +
+
+            '<span class="comment">// 2. 函数表达式</span>\n' +
+            'square(7) → ' + square(7) + '\n\n' +
+
+            '<span class="comment">// 3. 箭头函数</span>\n' +
+            'cube(4) → ' + cube(4) + '\n\n' +
+
+            '<span class="comment">// 4. 默认参数（exp 默认为 2）</span>\n' +
+            'power(5)    → ' + power(5)    + '  (5² = 25)\n' +
+            'power(2, 8) → ' + power(2, 8) + '  (2⁸ = 256)\n\n' +
+
+            '<span class="comment">// 5. 递归：阶乘</span>\n' +
+            'factorial(5) → ' + factorial(5) + '  (5! = 120)\n' +
+            'factorial(6) → ' + factorial(6) + '  (6! = 720)\n\n' +
+
+            '<span class="comment">// 6. 立即执行函数（IIFE）：半径为 5 的圆面积</span>\n' +
+            'circleArea → ' + circleArea + '\n\n' +
+
+            '<span class="comment">// 7. 高阶函数（applyTwice(x=>x+3, 10)）</span>\n' +
+            'twiceResult → ' + twiceResult + '  (10+3+3 = 16)\n\n' +
+
+            '<span class="comment">// 8. 闭包（计数器）</span>\n' +
+            'counter() → ' + counter() + '\n' +
+            'counter() → ' + counter() + '\n' +
+            'counter() → ' + counter()
+        );
+
+    </script>
+
+</body>
+</html>
